@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Opdracht</h1>
+<div class="jumbotron">
+
+    <p>
+        Email Adres:web.applicatie@outlook.com
+        <br />
+        Wachtwoord:W#g%gh4C$G
+        <br />
+        Geboortedatum:1/1/1998
+        <br />
+
+    </p>
+</div>
+<div>
+    @using (Html.BeginForm("Action", "Home"))
+    {
+
+        <input type="submit" value="Authenticate " />
+
+    }
+    <br />
+    @using (Html.BeginForm("Token", "Home"))
+    {
+
+        <input type="submit" value="Get Token " />
+
+    }
+
+
+
+</div>
+  

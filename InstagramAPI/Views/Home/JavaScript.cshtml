@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "JavaScript";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div>
+    <p>
+        <b>Data:</b>
+    <p id="id"></p>
+    <p id="username"></p>
+    <p id="profile_picture"></p>
+    <p id="full_name"></p>
+    <p id="bio"></p>
+    <p id="website"></p>
+    <p id="is_business"></p>
+    counts{
+    <br />
+    <p id="media"></p>
+    <p id="follows"></p>
+    <p id="followed_by"></p>
+    <br />
+    }
+    <br />
+    <img id="profile_picturex" height="200" width="200">
+    </p>
+
+    <script>
+        //maak een variabele die een waarde van functie heeft
+        //URl: De URL van de json
+        //ik maak gebruik van callback functie te controleren eerst van de connectie status als het goed is dan gaat de
+        //callback functie door
+        var getJSON = function (url, callback) {
+            //maak een connectie
+            var x = new XMLHttpRequest();
+            //open file met get requst
+            x.open('GET', url, true);
+            //krijg response  als Json file
+            x.responseType = 'json';
+            //data  laden
+            x.onload = function () {
+                var status = x.status;
+                //status controleren
+                if (status == 200) {
+                    callback(null, x.response);
+                } else {
+                    callback(status, null);
+                }
+            };
+
+            x.send();
+        };
+        //get Json van instagram API
+        getJSON('https://api.instagram.com/v1/users/self/?access_token=13568275929.28a7bf6.acabc60f23064130ad30475e811cd6db', function (err, data) {
+
+            if (err != null) {
+
+                console.error(err);
+            } else {
+                //statements om data te weergeven
+                document.getElementById("id").innerHTML = `id: ${data.data.id}`;
+                document.getElementById("username").innerHTML = `username: ${data.data.username}`;
+                document.getElementById("profile_picture").innerHTML = `profile_picture: ${data.data.profile_picture}`;
+                document.getElementById("full_name").innerHTML = `full_name: ${data.data.full_name}`;
+                document.getElementById("bio").innerHTML = `bio: ${data.data.bio}`;
+                document.getElementById("website").innerHTML = `website: ${data.data.website}`;
+                document.getElementById("is_business").innerHTML = `is_business: ${data.data.is_business}`;
+                document.getElementById("media").innerHTML = `media: ${data.data.counts.media}`;
+                document.getElementById("follows").innerHTML = `follows: ${data.data.counts.follows}`;
+                document.getElementById("followed_by").innerHTML = `followed_by: ${data.data.counts.followed_by}`;
+                document.getElementById('profile_picturex').src = ` ${data.data.profile_picture}`;
+
+            }
+        });
+
+    </script>
+</div>

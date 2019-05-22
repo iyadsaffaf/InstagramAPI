@@ -1,0 +1,43 @@
+﻿@model InstagramAPI.Models.InstagramUser
+@{
+    ViewBag.Title = "C#";
+}
+<h2>@ViewBag.Title.</h2>
+
+<h3>@ViewBag.Message</h3>
+
+<h3>@Model.data.Id</h3>
+<p>
+    Data:
+    <br />
+    id: @Model.data.Id
+    <br />
+    USer name: @Model.data.UserName
+    <br />
+    profile_picture: @Model.data.Profile_Picture
+
+    <br />
+    full_name: @Model.data.Full_Name
+    <br />
+    bio: @Model.data.Bio
+    <br />
+    website: @Model.data.Website
+    <br />
+    is_business: @Model.data.Is_businees
+    <br />
+    counts{
+    <br />
+    media: @Model.data.counts.Media
+    <br />
+
+    follows: @Model.data.counts.Follows
+    <br />
+    followed_by: @Model.data.counts.Followed_by
+    <br />
+    }
+    <br />
+
+    <br />
+    <img src="@Model.data.Profile_Picture" height="200" width="200">
+
+</p>
